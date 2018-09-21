@@ -4,8 +4,15 @@ const models = require('../models');
 const views = require('../views');
 router.use(express.urlencoded({ extended: false }));
 
-router.get('/', (req, res) => {
-  res.send('hello');
+router.get('/', async (req, res) => {
+  try {
+    //console.log('hello world');
+    const pages = await models.Page.findAll();
+    console.log(pages);
+    res.send(views.main(pages));
+  } catch (err) {
+    next(err);
+  }
 });
 
 router.post('/', async (req, res, next) => {
@@ -16,7 +23,7 @@ router.post('/', async (req, res, next) => {
       content: req.body.pageContent,
       status: 'open',
     });
-    res.redirect('/');
+    res.redirect(`/wiki/${page.slug}`);
   } catch (err) {
     next(err);
   }
@@ -33,7 +40,7 @@ router.get('/:slug', async (req, res, next) => {
     const page = await models.Page.findOne({
       where: { slug: req.params.slug },
     });
-    console.log(page);
+    res.send(views.wikiPage(page));
   } catch (err) {
     next(err);
   }
