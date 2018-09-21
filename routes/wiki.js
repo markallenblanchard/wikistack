@@ -28,8 +28,17 @@ router.get('/add', (req, res) => {
   res.send(views.addPage());
 });
 
-router.get('/:slug', (req, res, next) => {
-  res.send(`hit dynamic route at ${req.params.slug}`);
+router.get('/:slug', async (req, res, next) => {
+  try {
+    const page = await models.Page.findOne({
+      where: { slug: req.params.slug },
+    });
+    console.log(page);
+  } catch (err) {
+    next(err);
+  }
+
+  //  res.send(`hit dynamic route at ${req.params.slug}`);
 });
 
 module.exports = router;
