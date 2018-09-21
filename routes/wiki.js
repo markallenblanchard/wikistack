@@ -14,7 +14,6 @@ router.post('/', async (req, res, next) => {
     const page = await models.Page.create({
       title: req.body.title,
       content: req.body.pageContent,
-      slug: 'testing',
       status: 'open',
     });
     res.redirect('/');
@@ -24,8 +23,13 @@ router.post('/', async (req, res, next) => {
 
   //console.log(page);
 });
+
 router.get('/add', (req, res) => {
   res.send(views.addPage());
+});
+
+router.get('/:slug', (req, res, next) => {
+  res.send(`hit dynamic route at ${req.params.slug}`);
 });
 
 module.exports = router;
