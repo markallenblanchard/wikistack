@@ -1,0 +1,30 @@
+{
+  "name": "wikistack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/markallenblanchard/wikistack.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/markallenblanchard/wikistack/issues"
+  },
+  "homepage": "https://github.com/markallenblanchard/wikistack#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "html-template-tag": "^2.0.0",
+    "pg": "^7.4.3",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.38.1",
+    "volleyball": "^1.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
+}
